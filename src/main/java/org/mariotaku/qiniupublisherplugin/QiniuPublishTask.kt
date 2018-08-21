@@ -28,18 +28,20 @@ open class QiniuPublishTask : DefaultTask() {
 
     private val File.apkKey: String
         get() {
+            val uploadName = config.overrideKey
+            if (uploadName != null) return uploadName
             val prefix = config.keyPrefix.orEmpty()
             val suffix = config.keySuffix.orEmpty()
-            val uploadName = config.overrideKey ?: nameWithoutExtension
-            return "$prefix$uploadName$suffix.$extension"
+            return "$prefix$nameWithoutExtension$suffix.$extension"
         }
 
     private val File.mappingKey: String
         get() {
+            val uploadName = config.overrideMappingKey
+            if (uploadName != null) return uploadName
             val prefix = config.keyPrefix.orEmpty()
             val suffix = config.keySuffix.orEmpty()
-            val uploadName = config.overrideMappingKey ?: "mapping-$nameWithoutExtension"
-            return "$prefix$uploadName$suffix.txt"
+            return "${prefix}mapping-$nameWithoutExtension$uploadName$suffix.txt"
         }
 
     private val File.mediaType: String
