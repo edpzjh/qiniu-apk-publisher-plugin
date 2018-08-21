@@ -57,7 +57,7 @@ open class QiniuPublishTask : DefaultTask() {
                 true)
         if (!response.isOK) throw IOException("HTTP ${response.statusCode}: ${response.error}")
 
-        val refreshCdnUrl = config.refreshCdnUrl
+        val refreshCdnUrl = config.refreshCdnUrls
         if (config.refreshCdn && refreshCdnUrl != null) {
             val cdnManager = CdnManager(auth)
             cdnManager.refreshUrls(refreshCdnUrl.toTypedArray())

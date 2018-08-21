@@ -15,5 +15,5 @@ open class QiniuPublisherExtensions(factory: DefaultObjectFactory) {
 
     var uploadMapping: Boolean = false
     var refreshCdn: Boolean = false
-    var refreshCdnUrl: Set<String>? = null
+    var refreshCdnUrls: Set<String>? = null
 }
